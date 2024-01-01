@@ -1,0 +1,118 @@
+﻿@model PagedResult<OnlineExamination.ViewModels.UsersViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div>
+    <br />
+    <a asp-action="Create" asp-controller="Users" class="btn btn-primary">Create New</a>
+    <div>
+    <table id="userGrid" class="table table-striped table-bordered dt-responsive nowrap"
+           width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th> Name</th>
+                <th> Username</th>
+                <th> Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Data)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.UserName</td>
+                    <td>@item.Role</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    <cs-pager cs-paging-pagesize=(int)Model.PageSize
+              cs-paging-pagenumber=(int)Model.PageNumber
+              cs-paging-totalitems=(int)Model.TotalItems
+              cs-pagenumber-param="pagenumber"
+              asp-controller="Users"
+              asp-action="Index"
+              cs-pager-li-current-class="page-item active"
+               cs-pager-li-other-class="page-item"
+               cs-pager-non-active-class="page-item disabled"
+               cs-pager-link-current-class="page-link"
+               cs-pager-link-other-class="page-link">
+       </cs-pager>
+        </div>
+</div>
+@section scripts{ 
+<script>
+    $(document).ready(function () {
+        $('#userGrid').DataTable({
+                "paging": false,
+                    "filter": true
+            });
+    });
+</script>
+}
+
+@*<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+               Name
+            </th>
+            <th>
+               UserName
+            </th>
+            <th>
+               Role
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Data) {
+        <tr>
+            <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+               Teacher
+            </td>
+
+            <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalCount)
+        </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@

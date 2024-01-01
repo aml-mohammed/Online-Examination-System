@@ -1,0 +1,44 @@
+﻿@model OnlineExamination.ViewModels.AttendExamViewModel
+
+@{
+    ViewData["Title"] = "AttendExam";
+    Layout = "~/Views/Shared/_StudentsLayout.cshtml";
+}
+
+<h1>AttendExam</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @if (Model.message == "")
+        {
+        <form asp-action="AttendExam" asp-controller="Students" method="post">
+            <input type="hidden" asp-for="StudentId" class="form-control" />
+            <ul>
+                @for (int i = 0; i < Model.QnAs.Count(); i++)
+                {
+                    <input type="hidden" asp-for="@Model.QnAs[i].Id" />
+                    <input type="hidden" asp-for="@Model.QnAs[i].ExamsId" />
+
+                    <li><label for="@Model.QnAs[i].Qustion"> @Model.QnAs[i].Qustion</label></li>
+
+                    <li>
+                        <select asp-for="@Model.QnAs[i].SelectedAnswer" class="form-control">
+                            <option value="1">@Model.QnAs[i].Option1</option>
+                            <option value="2">@Model.QnAs[i].Option2</option>
+                            <option value="3">@Model.QnAs[i].Option3</option>
+                            <option value="4">@Model.QnAs[i].Option4</option>
+
+                        </select>
+                    </li>
+                }
+            </ul>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+        }
+        else
+        {
+            <p style="font-size:30px; color:red;text-align:center;">@Model.message</p>
+        }

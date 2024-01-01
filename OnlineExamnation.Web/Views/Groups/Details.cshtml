@@ -1,0 +1,67 @@
+﻿@model OnlineExamination.ViewModels.GroupViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+
+
+<form asp-action="Dtails" asp-controller="Groups" method="post">
+    <input type="hidden" asp-for="Id" class="form-control" />
+    <ul>
+        @for (int i = 0; i < Model.studentCheckList.Count(); i++)
+        {
+        <li>
+            <input type="checkbox" asp-for="@Model.studentCheckList[i].Selected" />
+            <label for="@Model.studentCheckList[i].Name">@Model.studentCheckList[i].Name</label>
+            <input type="checkbox" asp-for="@Model.studentCheckList[i].Id" />
+            <input type="checkbox" asp-for="@Model.studentCheckList[i].Name" />
+
+        </li>
+        }
+    </ul>
+    <button type="submit" name="action">update</button>
+</form>
+    
+        @*<div>
+                <h4>GroupViewModel</h4>
+                <hr />
+                <dl class="row">
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Id)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Id)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.UsersId)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.UsersId)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.TotalCount)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.TotalCount)
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+                <a asp-action="Index">Back to List</a>
+            </div>*@
